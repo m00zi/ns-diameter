@@ -8,8 +8,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/fiorix/go-diameter/v4/diam/datatype"
-	"github.com/fiorix/go-diameter/v4/diam/sm/smparser"
+	"github.com/m00zi/ns-diameter/diam/datatype"
+	"github.com/m00zi/ns-diameter/diam/sm/smparser"
 )
 
 func TestFromCER(t *testing.T) {

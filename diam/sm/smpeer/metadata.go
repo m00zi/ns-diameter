@@ -5,10 +5,10 @@
 package smpeer
 
 import (
-	"context"
+	"golang.org/x/net/context"
 
-	"github.com/fiorix/go-diameter/v4/diam/datatype"
-	"github.com/fiorix/go-diameter/v4/diam/sm/smparser"
+	"github.com/m00zi/ns-diameter/diam/datatype"
+	"github.com/m00zi/ns-diameter/diam/sm/smparser"
 )
 
 type key int

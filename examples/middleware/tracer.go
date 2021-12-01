@@ -3,7 +3,7 @@ package middleware
 import (
 	"strings"
 
-	"github.com/fiorix/go-diameter/v4/diam"
+	"github.com/m00zi/ns-diameter/diam"
 	"github.com/opentracing/opentracing-go"
 )
 

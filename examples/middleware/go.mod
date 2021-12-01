@@ -1,8 +1,8 @@
-module github.com/fiorix/go-diameter/examples/middleware
+module github.com/m00zi/go-diameter/examples/middleware
 
-go 1.15
+go 1.25
 
 require (
-	github.com/fiorix/go-diameter/v4 v4.0.2
+	github.com/m00zi/ns-diameter v0.0.1
 	github.com/opentracing/opentracing-go v1.2.0
 )

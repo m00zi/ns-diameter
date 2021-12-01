@@ -23,11 +23,12 @@ import (
 
 	_ "net/http/pprof"
 
-	"github.com/fiorix/go-diameter/v4/diam"
-	"github.com/fiorix/go-diameter/v4/diam/avp"
-	"github.com/fiorix/go-diameter/v4/diam/datatype"
-	"github.com/fiorix/go-diameter/v4/diam/sm"
 	"io"
+
+	"github.com/m00zi/ns-diameter/diam"
+	"github.com/m00zi/ns-diameter/diam/avp"
+	"github.com/m00zi/ns-diameter/diam/datatype"
+	"github.com/m00zi/ns-diameter/diam/sm"
 )
 
 const (

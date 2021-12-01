@@ -1118,6 +1118,7 @@ var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
                 <rule avp="QoS-Information" required="false" max="1"/>
                 <rule avp="TGPP-SGSN-MCC-MNC" required="false" max="1"/>
                 <rule avp="TGPP-User-Location-Info" required="false" max="1"/>
+                <rule avp="PDN-Connection-ID" required="false" max="1"/>
             </request>
             <answer>
                 <!-- 3GPP 29.212 Section 5.6.3 -->
@@ -1471,6 +1472,11 @@ var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
 
         <avp name="TGPP-MS-TimeZone" code="23" must="V" may="P" must-not="M" may-encrypt="y" vendor-id="10415">
             <!-- 3GPP 29.061 Table 9a -->
+            <data type="OctetString"/>
+        </avp>
+
+        <avp name="PDN-Connection-ID" code="1065" must="V" may="P" must-not="M" may-encrypt="y" vendor-id="10415">
+            <!-- ADDED BY NS -->
             <data type="OctetString"/>
         </avp>
 

@@ -7,10 +7,10 @@ package smparser
 import (
 	"testing"
 
-	"github.com/fiorix/go-diameter/v4/diam"
-	"github.com/fiorix/go-diameter/v4/diam/avp"
-	"github.com/fiorix/go-diameter/v4/diam/datatype"
-	"github.com/fiorix/go-diameter/v4/diam/dict"
+	"github.com/m00zi/ns-diameter/diam"
+	"github.com/m00zi/ns-diameter/diam/avp"
+	"github.com/m00zi/ns-diameter/diam/datatype"
+	"github.com/m00zi/ns-diameter/diam/dict"
 )
 
 func TestDWR_MissingOriginHost(t *testing.T) {

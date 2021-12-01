@@ -45,8 +45,8 @@ With Go 1.11 and newer (preferred), you can start the client and server already:
 
 ```
 export GO111MODULE=on
-go run github.com/fiorix/go-diameter/v4/examples/server
-go run github.com/fiorix/go-diameter/v4/examples/client -hello
+go run github.com/m00zi/ns-diameter/examples/server
+go run github.com/m00zi/ns-diameter/examples/client -hello
 ```
 
 Without modules, use standard procedure:

@@ -7,8 +7,8 @@ package smparser
 import (
 	"fmt"
 
-	"github.com/fiorix/go-diameter/v4/diam"
-	"github.com/fiorix/go-diameter/v4/diam/datatype"
+	"github.com/m00zi/ns-diameter/diam"
+	"github.com/m00zi/ns-diameter/diam/datatype"
 )
 
 // CEA is a Capabilities-Exchange-Answer message.

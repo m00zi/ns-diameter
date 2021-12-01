@@ -1,6 +1,6 @@
-module github.com/fiorix/go-diameter/v4
+module github.com/m00zi/ns-diameter
 
-go 1.20
+go 1.25
 
 require (
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
