@@ -20,6 +20,7 @@ func init() {
 		{"Base", baseXML},
 		{"Credit Control", creditcontrolXML},
 		{"Gx Charging Control", gxcreditcontrolXML},
+		{"Sy Spending Limit", diametersyXML},
 		{"Network Access Server", networkaccessserverXML},
 		{"TGPP", tgpprorfXML},
 		{"TGPP_S6a", tgpps6aXML},
