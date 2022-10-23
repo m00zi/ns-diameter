@@ -317,7 +317,7 @@ func (cli *Client) makeDWR(osid uint32) *diam.Message {
 	m.NewAVP(avp.OriginHost, avp.Mbit, 0, cli.Handler.cfg.OriginHost)
 	m.NewAVP(avp.OriginRealm, avp.Mbit, 0, cli.Handler.cfg.OriginRealm)
 	if cli.Handler.cfg.OriginStateID != 0 {
-	m.NewAVP(avp.OriginStateID, avp.Mbit, 0, datatype.Unsigned32(osid))
+		m.NewAVP(avp.OriginStateID, avp.Mbit, 0, datatype.Unsigned32(osid))
 	}
 	return m
 }

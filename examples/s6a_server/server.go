@@ -23,11 +23,12 @@ import (
 
 	_ "net/http/pprof"
 
+	"io"
+
 	"github.com/m00zi/ns-diameter/diam"
 	"github.com/m00zi/ns-diameter/diam/avp"
 	"github.com/m00zi/ns-diameter/diam/datatype"
 	"github.com/m00zi/ns-diameter/diam/sm"
-	"io"
 )
 
 const (

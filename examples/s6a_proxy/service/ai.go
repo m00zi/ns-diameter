@@ -9,13 +9,13 @@ import (
 	"strings"
 	"time"
 
+	"github.com/golang/glog"
 	"github.com/m00zi/ns-diameter/diam"
 	"github.com/m00zi/ns-diameter/diam/avp"
 	"github.com/m00zi/ns-diameter/diam/datatype"
 	"github.com/m00zi/ns-diameter/diam/dict"
 	"github.com/m00zi/ns-diameter/diam/sm/smpeer"
 	"github.com/m00zi/ns-diameter/examples/s6a_proxy/protos"
-	"github.com/golang/glog"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
