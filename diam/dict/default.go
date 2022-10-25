@@ -1063,13 +1063,25 @@ var diametersyXML = `<?xml version="1.0" encoding="UTF-8"?>
 			</answer>
 		</command>
 
+		<!-- ADDED FOR PCRF/OCS Sy -->
+		<avp name="Policy-Counter-Identifier" code="2901" mandatory="must" vendor-id="10415">
+			<data type="UTF8String"/>
+		</avp>
+
+		<avp name="Policy-Counter-Status" code="2902" mandatory="must" vendor-id="10415">
+			<data type="UTF8String"/>
+		</avp>
+
+		<avp name="Policy-Counter-Status-Report" code="2903" mandatory="must" vendor-id="10415">
+			<data type="UTF8String"/>
+		</avp>
+
 		<avp name="SL-Request-Type" code="2904" must="M" may="P" must-not="V" may-encrypt="-" vendor-id="10415">
 			<data type="Enumerated">
 				<item code="0" name="INITIAL_REQUEST"/>
 				<item code="1" name="INTERMEDIATE_REQUEST"/>
 			</data>
 		</avp>
-
 
         <avp name="Subscription-Id" code="443" must="M" may="P" must-not="V" may-encrypt="Y" vendor-id="0">
             <!-- https://tools.ietf.org/rfc/rfc4006.txt -->
@@ -1094,6 +1106,8 @@ var diametersyXML = `<?xml version="1.0" encoding="UTF-8"?>
             <!-- https://tools.ietf.org/rfc/rfc4006.txt -->
             <data type="UTF8String"/>
         </avp>
+
+		<!-- ADDED FOR PCRF/OCS Sy -->
 		
     </application>
 </diameter>`

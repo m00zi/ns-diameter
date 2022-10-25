@@ -735,4 +735,7 @@ const (
 	VPLMNLIPAAllowed                           = 1617
 	XRES                                       = 1448
 	EventTriger                                = 1006
+	PolicyCounterIdentifier                    = 2901
+	PolicyCounterStatus                        = 2902
+	PolicyCounterStatusReport                  = 2903
 )
