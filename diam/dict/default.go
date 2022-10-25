@@ -1030,6 +1030,7 @@ var diametersyXML = `<?xml version="1.0" encoding="UTF-8"?>
 		<!-- Diameter Credit Control Application -->
 		<!-- http://tools.ietf.org/html/rfc4006 -->
 
+		<vendor id="10415" name="TGPP"/>
 		<command code="8388635" short="SL" name="Spending-Limit">
 			<request>
 				<!-- http://tools.ietf.org/html/rfc4006#section-3.1 -->
