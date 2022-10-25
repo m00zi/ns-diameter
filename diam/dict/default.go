@@ -1030,7 +1030,6 @@ var diametersyXML = `<?xml version="1.0" encoding="UTF-8"?>
 		<!-- Diameter Credit Control Application -->
 		<!-- http://tools.ietf.org/html/rfc4006 -->
 
-		<vendor id="10415" name="TGPP"/>
 		<command code="8388635" short="SL" name="Spending-Limit">
 			<request>
 				<!-- http://tools.ietf.org/html/rfc4006#section-3.1 -->
@@ -1064,12 +1063,37 @@ var diametersyXML = `<?xml version="1.0" encoding="UTF-8"?>
 			</answer>
 		</command>
 
-		<avp name="SL-Request-Type" code="2904" must="M" may="P" must-not="V" may-encrypt="-">
+		<avp name="SL-Request-Type" code="2904" must="M" may="P" must-not="V" may-encrypt="-" vendor-id="10415">
 			<data type="Enumerated">
 				<item code="0" name="INITIAL_REQUEST"/>
 				<item code="1" name="INTERMEDIATE_REQUEST"/>
 			</data>
 		</avp>
+
+
+        <avp name="Subscription-Id" code="443" must="M" may="P" must-not="V" may-encrypt="Y" vendor-id="0">
+            <!-- https://tools.ietf.org/rfc/rfc4006.txt -->
+            <data type="Grouped">
+                <rule avp="Subscription-Id-Type" required="false" max="1"/>
+                <rule avp="Subscription-Id-Data" required="false" max="1"/>
+            </data>
+        </avp>
+
+        <avp name="Subscription-Id-Type" code="450" must="M" may="P" must-not="V" may-encrypt="Y" vendor-id="0">
+            <!-- https://tools.ietf.org/rfc/rfc4006.txt -->
+            <data type="Enumerated">
+                <item code="0" name="END_USER_E164"/>
+                <item code="1" name="END_USER_IMSI"/>
+                <item code="2" name="END_USER_SIP_URI"/>
+                <item code="3" name="END_USER_NAI"/>
+                <item code="4" name="END_USER_PRIVATE"/>
+            </data>
+        </avp>
+
+        <avp name="Subscription-Id-Data" code="444" must="M" may="P" must-not="V" may-encrypt="Y" vendor-id="0">
+            <!-- https://tools.ietf.org/rfc/rfc4006.txt -->
+            <data type="UTF8String"/>
+        </avp>
 		
     </application>
 </diameter>`
