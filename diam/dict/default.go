@@ -1071,9 +1071,12 @@ var diametersyXML = `<?xml version="1.0" encoding="UTF-8"?>
 			<data type="UTF8String"/>
 		</avp>
 
-		<avp name="Policy-Counter-Status-Report" code="2903" mandatory="must" vendor-id="10415">
-			<data type="UTF8String"/>
-		</avp>
+        <avp name="Policy-Counter-Status-Report" code="2903" must="M" may="P" vendor-id="10415">
+            <data type="Grouped">
+                <rule avp="Policy-Counter-Identifier" required="false" max="1"/>
+                <rule avp="Policy-Counter-Status" required="false" max="1"/>
+            </data>
+        </avp>
 
 		<avp name="SL-Request-Type" code="2904" must="M" may="P" must-not="V" may-encrypt="-" vendor-id="10415">
 			<data type="Enumerated">
