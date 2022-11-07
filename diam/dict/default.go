@@ -1062,6 +1062,43 @@ var diametersyXML = `<?xml version="1.0" encoding="UTF-8"?>
 			</answer>
 		</command>
 
+
+		<!-- ADDED FOR PCRF/OCS Sy -->
+		<command code="8388636" short="SN" name="Spending-Status-Notification">
+			<request>
+				<!-- http://tools.ietf.org/html/rfc4006#section-3.1 -->
+				<rule avp="Session-Id" required="true" max="1"/>
+				<rule avp="Auth-Application-Id" required="true" max="1"/>
+				<rule avp="Origin-Host" required="true" max="1"/>
+				<rule avp="Origin-Realm" required="true" max="1"/>
+				<rule avp="Destination-Realm" required="true" max="1"/>
+				<rule avp="Destination-Host" required="false" max="1"/>
+				<rule avp="Origin-State-Id" required="false" max="1"/>
+				<rule avp="Policy-Counter-Identifier" required="false" max="1"/>
+				<rule avp="Proxy-Info" required="false" max="1"/>
+				<rule avp="Route-Record" required="false" max="1"/>
+				<rule avp="Service-Information" required="false" max="1"/>
+			</request>
+			<answer>
+				<!-- http://tools.ietf.org/html/rfc4006#section-3.2 -->
+				<rule avp="Session-Id" required="true" max="1"/>
+				<rule avp="Result-Code" required="true" max="1"/>
+				<rule avp="Origin-Host" required="true" max="1"/>
+				<rule avp="Origin-Realm" required="true" max="1"/>
+				<rule avp="Origin-State-Id" required="false" max="1"/>
+				<rule avp="Redirect-Host" required="false" max="1"/>
+				<rule avp="Redirect-Host-Usage" required="false" max="1"/>
+				<rule avp="Redirect-Max-Cache-Time" required="false" max="1"/>
+				<rule avp="Proxy-Info" required="false" max="1"/>
+				<rule avp="Route-Record" required="false" max="1"/>
+				<rule avp="Failed-AVP" required="false" max="1"/>
+			</answer>
+		</command>
+		<!-- ADDED FOR PCRF/OCS Sy -->
+
+
+
+
 		<!-- ADDED FOR PCRF/OCS Sy -->
 		<avp name="Policy-Counter-Identifier" code="2901" mandatory="must" vendor-id="10415">
 			<data type="UTF8String"/>
