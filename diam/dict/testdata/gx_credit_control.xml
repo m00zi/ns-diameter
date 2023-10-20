@@ -213,6 +213,21 @@
             </data>
         </avp>
 
+        <avp name="QoS-Class-Identifier" code="1028" mandatory="must" may-encrypt="yes" protected="may" vendor-bit="must" vendor-id="TGPP">
+            <type type-name="Enumerated"/>
+            <enum name="QCI_1" code="1"/>
+            <enum name="QCI_2" code="2"/>
+            <enum name="QCI_3" code="3"/>
+            <enum name="QCI_4" code="4"/>
+            <enum name="QCI_5" code="5"/>
+            <enum name="QCI_6" code="6"/>
+            <enum name="QCI_7" code="7"/>
+            <enum name="QCI_8" code="8"/>
+            <enum name="QCI_9" code="9"/>
+            <!-- The values shall be used to indicate standardized characteristics associated with standardized QCI values from
+            3GPP TS 23.203 -->
+        </avp>
+
         <avp name="Rule-Activation-Time" code="1043" must="M,V" may="P" may-encrypt="y" vendor-id="10415">
             <!-- 3GPP 29.212 -->
             <data type="Time"/>
@@ -360,6 +375,30 @@
                 <rule avp="Allocation-Retention-Priority" required="false" max="1"/>
                 <!-- *[ AVP ]-->
             </data>
+        </avp>
+
+        <avp name="Priority-Level" code="1046" mandatory="must" may-encrypt="yes" protected="may" vendor-bit="must" vendor-id="TGPP">
+            <type type-name="Unsigned32"/>
+        </avp>
+
+        <avp name="Pre-emption-Capability" code="1047" mandatory="must" may-encrypt="yes" protected="may" vendor-bit="must" vendor-id="TGPP">
+            <type type-name="Enumerated"/>
+                <enum name="PRE-EMPTION_CAPABILITY_ENABLED" code="0"/>
+                <enum name="PRE-EMPTION_CAPABILITY_DISABLED" code="1"/>
+        </avp>
+
+        <avp name="Pre-emption-Vulnerability" code="1048" mandatory="must" may-encrypt="yes" protected="may" vendor-bit="must" vendor-id="TGPP">
+            <type type-name="Enumerated"/>
+                <enum name="PRE-EMPTION_VULNERABILITY_ENABLED" code="0"/>
+                <enum name="PRE-EMPTION_VULNERABILITY_DISABLED" code="1"/>
+        </avp>
+
+        <avp name="Allocation-Retention-Priority" code="1034" mandatory="must" may-encrypt="yes" protected="may" vendor-bit="must" vendor-id="TGPP">
+            <grouped>
+                <gavp name="Priority-Level"/>
+                <gavp name="Pre-emption-Capability"/>
+                <gavp name="Pre-emption-Vulnerability"/>
+            </grouped>
         </avp>
 
         <avp name="AN-GW-Address" code="1050" must="V" may="P" must-not="M" may-encrypt="y" vendor-id="10415">
