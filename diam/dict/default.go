@@ -1512,6 +1512,57 @@ var gxcreditcontrolXML = `<?xml version="1.0" encoding="UTF-8"?>
             </data>
         </avp>
 
+		<avp name="QoS-Class-Identifier" code="1028" must="V,M" may="P" must-not="-" may-encrypt="Y" vendor-id="10415">
+			<data type="Enumerated">
+				<item code="1" name="QCI_1"/>
+				<item code="2" name="QCI_2"/>
+				<item code="3" name="QCI_3"/>
+				<item code="4" name="QCI_4"/>
+				<item code="5" name="QCI_5"/>
+				<item code="6" name="QCI_6"/>
+				<item code="7" name="QCI_7"/>
+				<item code="8" name="QCI_8"/>
+				<item code="9" name="QCI_9"/>
+				<item code="65" name="QCI_65"/>
+				<item code="66" name="QCI_66"/>
+				<item code="69" name="QCI_69"/>
+				<item code="70" name="QCI_70"/>
+				<item code="75" name="QCI_75"/>
+				<item code="79" name="QCI_79"/>
+			</data>
+		</avp>
+
+		<avp name="Allocation-Retention-Priority" code="1034" must="V" may="P" must-not="M" may-encrypt="Y" vendor-id="10415">
+			<!-- 3GPP TS 29.212 [10] -->
+			<data type="Grouped">
+				<rule avp="Priority-Level" required="true" max="1"/>
+				<rule avp="Pre-emption-Capability" required="false" max="1"/>
+				<rule avp="Pre-emption-Vulnerability" required="false" max="1"/>
+			</data>
+		</avp>
+
+		<avp name="Priority-Level" code="1046" must="V" may="P" must-not="M" may-encrypt="Y" vendor-id="10415">
+			<!-- 3GPP TS 29.212 [10] -->
+			<data type="Unsigned32"/>
+		</avp>
+
+		<avp name="Pre-emption-Capability" code="1047" must="V" may="P" must-not="M" may-encrypt="Y" vendor-id="10415">
+			<!-- 3GPP TS 29.212 [10] -->
+			<data type="Enumerated">
+				<item code="0" name="PRE-EMPTION_CAPABILITY_ENABLED"/>
+				<item code="1" name="PRE-EMPTION_CAPABILITY_DISABLED"/>
+			</data>
+		</avp>
+
+		<avp name="Pre-emption-Vulnerability" code="1048" must="V" may="P" must-not="M" may-encrypt="Y" vendor-id="10415">
+			<!-- 3GPP TS 29.212 [10] -->
+			<data type="Enumerated">
+				<item code="0" name="PRE-EMPTION_VULNERABILITY_ENABLED"/>
+				<item code="1" name="PRE-EMPTION_VULNERABILITY_DISABLED"/>
+			</data>
+		</avp>
+
+
         <avp name="AN-GW-Address" code="1050" must="V" may="P" must-not="M" may-encrypt="y" vendor-id="10415">
             <!-- 3GPP 29.212 Section 5.3.49 -->
             <data type="Address"/>
@@ -6584,6 +6635,57 @@ var tgppswxXML = `<?xml version="1.0" encoding="UTF-8"?>
                 <rule avp="QoS-Class-Identifier" required="true" max="1"/>
                 <rule avp="Allocation-Retention-Priority" required="true" max="1"/>
                 <rule avp="AVP" required="false"/>
+            </data>
+        </avp>
+
+        <avp name="QoS-Class-Identifier" code="1028" must="V,M" may="P" must-not="-" may-encrypt="Y" vendor-id="10415">
+            <!-- 3GPP TS 29.212 [10] -->
+            <data type="Enumerated">
+                <item code="1" name="QCI_1"/>
+                <item code="2" name="QCI_2"/>
+                <item code="3" name="QCI_3"/>
+                <item code="4" name="QCI_4"/>
+                <item code="5" name="QCI_5"/>
+                <item code="6" name="QCI_6"/>
+                <item code="7" name="QCI_7"/>
+                <item code="8" name="QCI_8"/>
+                <item code="9" name="QCI_9"/>
+                <item code="65" name="QCI_65"/>
+                <item code="66" name="QCI_66"/>
+                <item code="69" name="QCI_69"/>
+                <item code="70" name="QCI_70"/>
+                <item code="75" name="QCI_75"/>
+                <item code="79" name="QCI_79"/>
+            </data>
+        </avp>
+
+        <avp name="Allocation-Retention-Priority" code="1034" must="V" may="P" must-not="M" may-encrypt="Y" vendor-id="10415">
+            <!-- 3GPP TS 29.212 [10] -->
+            <data type="Grouped">
+                <rule avp="Priority-Level" required="true" max="1"/>
+                <rule avp="Pre-emption-Capability" required="false" max="1"/>
+                <rule avp="Pre-emption-Vulnerability" required="false" max="1"/>
+            </data>
+        </avp>
+
+        <avp name="Priority-Level" code="1046" must="V" may="P" must-not="M" may-encrypt="Y" vendor-id="10415">
+            <!-- 3GPP TS 29.212 [10] -->
+            <data type="Unsigned32"/>
+        </avp>
+
+        <avp name="Pre-emption-Capability" code="1047" must="V" may="P" must-not="M" may-encrypt="Y" vendor-id="10415">
+            <!-- 3GPP TS 29.212 [10] -->
+            <data type="Enumerated">
+                <item code="0" name="PRE-EMPTION_CAPABILITY_ENABLED"/>
+                <item code="1" name="PRE-EMPTION_CAPABILITY_DISABLED"/>
+            </data>
+        </avp>
+
+        <avp name="Pre-emption-Vulnerability" code="1048" must="V" may="P" must-not="M" may-encrypt="Y" vendor-id="10415">
+            <!-- 3GPP TS 29.212 [10] -->
+            <data type="Enumerated">
+                <item code="0" name="PRE-EMPTION_VULNERABILITY_ENABLED"/>
+                <item code="1" name="PRE-EMPTION_VULNERABILITY_DISABLED"/>
             </data>
         </avp>
 
