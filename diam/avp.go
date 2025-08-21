@@ -14,6 +14,9 @@ import (
 	"github.com/m00zi/ns-diameter/diam/dict"
 )
 
+// Used to signal that parsing should not stop.
+type DecodeError error
+
 // AVP is a Diameter attribute-value-pair.
 type AVP struct {
 	Code     uint32        // Code of this AVP

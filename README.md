@@ -2,10 +2,10 @@
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/fiorix/go-diameter)](https://goreportcard.com/report/github.com/fiorix/go-diameter)
 [![Test Status](https://github.com/fiorix/go-diameter/actions/workflows/test.yaml/badge.svg)](https://github.com/fiorix/go-diameter/actions/workflows/test.yaml)
-[![Go Reference](https://pkg.go.dev/badge/github.com/fiorix/go-diameter/v4.svg)](https://pkg.go.dev/github.com/fiorix/go-diameter/v4)
+[![Go Reference](https://pkg.go.dev/badge/github.com/m00zi/ns-diameter.svg)](https://pkg.go.dev/github.com/m00zi/ns-diameter)
 [![Latest](https://img.shields.io/github/v/tag/fiorix/go-diameter.svg?sort=semver&style=flat-square&label=latest)](https://github.com/fiorix/go-diameter/tags)
 
-Package [go-diameter](https://pkg.go.dev/github.com/fiorix/go-diameter/v4) is an
+Package [go-diameter](https://pkg.go.dev/github.com/m00zi/ns-diameter) is an
 implementation of the
 Diameter Base Protocol [RFC 6733](http://tools.ietf.org/html/rfc6733)
 and a stack for the [Go programming language](https://go.dev/).
@@ -16,7 +16,7 @@ The current implementation is solid and works fine for general purpose
 clients and servers. It can send and receive messages efficiently as
 well as build and parse AVPs based on dictionaries.
 
-See the API documentation at https://pkg.go.dev/github.com/fiorix/go-diameter/v4
+See the API documentation at https://pkg.go.dev/github.com/m00zi/ns-diameter
 
 ## Features
 
