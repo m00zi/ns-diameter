@@ -11,9 +11,7 @@ type DiameterIdentity OctetString
 
 // DecodeDiameterIdentity decodes a DiameterIdentity from byte array.
 func DecodeDiameterIdentity(b []byte) (Type, error) {
-	d := make([]byte, len(b))
-	copy(d, b)
-	return DiameterIdentity(d), nil
+	return DiameterIdentity(b), nil
 }
 
 // Serialize implements the Type interface.

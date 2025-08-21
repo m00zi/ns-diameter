@@ -7,7 +7,6 @@ package diam
 import (
 	"bytes"
 	"fmt"
-	"strings"
 
 	"github.com/m00zi/ns-diameter/diam/datatype"
 	"github.com/m00zi/ns-diameter/diam/dict"
@@ -26,19 +25,15 @@ type GroupedAVP struct {
 func DecodeGrouped(data datatype.Grouped, application uint32, dictionary *dict.Parser) (*GroupedAVP, error) {
 	g := &GroupedAVP{}
 	b := []byte(data)
-	var errs []string
 	for n := 0; n < len(b); {
 		avp, err := DecodeAVP(b[n:], application, dictionary)
 		if err != nil {
-			errs = append(errs, err.Error())
+			return nil, err
 		}
 		g.AVP = append(g.AVP, avp)
 		n += avp.Len()
 	}
 	// TODO: handle nested groups?
-	if len(errs) > 0 {
-		return g, fmt.Errorf("%s", strings.Join(errs, "; "))
-	}
 	return g, nil
 }
 

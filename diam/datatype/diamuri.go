@@ -11,9 +11,7 @@ type DiameterURI OctetString
 
 // DecodeDiameterURI decodes a DiameterURI from byte array.
 func DecodeDiameterURI(b []byte) (Type, error) {
-	d := make([]byte, len(b))
-	copy(d, b)
-	return DiameterURI(OctetString(d)), nil
+	return DiameterURI(OctetString(b)), nil
 }
 
 // Serialize implements the Type interface.

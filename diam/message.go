@@ -12,7 +12,6 @@ import (
 	"io"
 	"math/rand"
 	"net"
-	"strings"
 	"sync"
 	"time"
 
@@ -33,9 +32,9 @@ type Message struct {
 	Header *Header
 	AVP    []*AVP // AVPs in this message.
 
-	DecodeErr  error        // Possible decoding error on one or more AVPs (does not halt parsing)
-	dictionary *dict.Parser // dictionary parser object used to encode and decode AVPs.
-	stream     uint         // the stream this message was received on (if any)
+	// dictionary parser object used to encode and decode AVPs.
+	dictionary *dict.Parser
+	stream     uint // the stream this message was received on (if any)
 	ctx        context.Context
 }
 
@@ -75,10 +74,7 @@ func ReadMessage(reader io.Reader, dictionary *dict.Parser) (*Message, error) {
 	}
 	m.stream = stream
 	if err = m.readBody(reader, buf, cmd, stream); err != nil {
-		return m, err
-	}
-	if dictionary.Strict {
-		return m, m.DecodeErr
+		return nil, err
 	}
 	return m, nil
 }
@@ -153,23 +149,14 @@ func (m *Message) maxAVPsFor(cmd *dict.Command) int {
 
 func (m *Message) decodeAVPs(b []byte) error {
 	var a *AVP
-	var decodeErrs []string
 	var err error
 	for n := 0; n < len(b); {
 		a, err = DecodeAVP(b[n:], m.Header.ApplicationID, m.Dictionary())
 		if err != nil {
-			if decodeErr, ok := err.(DecodeError); ok {
-				decodeErrs = append(decodeErrs, decodeErr.Error())
-			} else {
-				return err
-			}
+			return fmt.Errorf("Failed to decode AVP: %s", err)
 		}
 		m.AVP = append(m.AVP, a)
 		n += a.Len()
-	}
-	if len(decodeErrs) > 0 {
-		// Depending on the settings, this will be thrown by the state machine or passed to the best handler
-		m.DecodeErr = fmt.Errorf("Failed to decode one or more AVPs: {%s}", strings.Join(decodeErrs, "; "))
 	}
 	return nil
 }
@@ -437,6 +424,7 @@ func avpsWithPath(avps []*AVP, path []uint32) []*AVP {
 //	avps, err := m.FindAVPs(264)
 //	avps, err := m.FindAVPs(avp.OriginHost)
 //	avps, err := m.FindAVPs("Origin-Host")
+//
 func (m *Message) FindAVPs(code interface{}, vendorID uint32) ([]*AVP, error) {
 	dictAVP, err := m.Dictionary().FindAVPWithVendor(m.Header.ApplicationID, code, vendorID)
 
@@ -455,6 +443,7 @@ func (m *Message) FindAVPs(code interface{}, vendorID uint32) ([]*AVP, error) {
 //	avp, err := m.FindAVP(264)
 //	avp, err := m.FindAVP(avp.OriginHost)
 //	avp, err := m.FindAVP("Origin-Host")
+//
 func (m *Message) FindAVP(code interface{}, vendorID uint32) (*AVP, error) {
 	dictAVP, err := m.Dictionary().FindAVPWithVendor(m.Header.ApplicationID, code, vendorID)
 
@@ -479,6 +468,7 @@ func (m *Message) FindAVP(code interface{}, vendorID uint32) (*AVP, error) {
 //	avp, err := m.FindAVPsWithPath([]interface{}{264})
 //	avp, err := m.FindAVPsWithPath([]interface{}{avp.OriginHost})
 //	avp, err := m.FindAVPsWithPath([]interface{}{"Origin-Host"})
+//
 func (m *Message) FindAVPsWithPath(path []interface{}, vendorID uint32) ([]*AVP, error) {
 	pathCodes := make([]uint32, len(path))
 	for i, pathCode := range path {

@@ -8,7 +8,6 @@ package diam
 
 import (
 	"bufio"
-	"context"
 	"crypto/tls"
 	"fmt"
 	"io"
@@ -17,6 +16,8 @@ import (
 	"runtime"
 	"sync"
 	"time"
+
+	"golang.org/x/net/context"
 
 	"github.com/m00zi/ns-diameter/diam/dict"
 )
@@ -168,7 +169,10 @@ func (c *conn) readMessage() (m *Message, err error) {
 	} else {
 		m, err = ReadMessage(c.buf.Reader, c.dictionary())
 	}
-	return m, err
+	if err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // Serve a new connection.
@@ -667,10 +671,8 @@ func ListenAndServe(addr string, handler Handler, dp *dict.Parser) error {
 // ListenAndServeTLS listens on the network address srv.Addr and
 // then calls Serve to handle requests on incoming TLS connections.
 //
-// Either filenames containing a certificate and matching private key
-// for the server must be provided either the callback
-// srv.TLSConfig.GetCertificate should be filled in advance.
-// If the certificate is signed by a
+// Filenames containing a certificate and matching private key for
+// the server must be provided. If the certificate is signed by a
 // certificate authority, the certFile should be the concatenation
 // of the server's certificate followed by the CA's certificate.
 //
@@ -692,12 +694,10 @@ func (srv *Server) ListenAndServeTLS(certFile, keyFile string) error {
 		config = TLSConfigClone(srv.TLSConfig)
 	}
 	var err error
-	if config.GetCertificate == nil {
-		config.Certificates = make([]tls.Certificate, 1)
-		config.Certificates[0], err = tls.LoadX509KeyPair(certFile, keyFile)
-		if err != nil {
-			return err
-		}
+	config.Certificates = make([]tls.Certificate, 1)
+	config.Certificates[0], err = tls.LoadX509KeyPair(certFile, keyFile)
+	if err != nil {
+		return err
 	}
 	conn, err := Listen(network, addr)
 	if err != nil {

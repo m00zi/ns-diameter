@@ -16,27 +16,25 @@ type Address []byte
 
 // DecodeAddress decodes an Address data type from byte array.
 func DecodeAddress(b []byte) (Type, error) {
-	d := make([]byte, len(b))
-	copy(d, b)
 	if len(b) < 3 {
-		return Address{}, fmt.Errorf("Not enough data to make an Address from byte[%d] = %+v", len(b), b)
+		return nil, fmt.Errorf("Not enough data to make an Address from byte[%d] = %+v", len(b), b)
 	}
 	if binary.BigEndian.Uint16(b[:2]) == 0 || binary.BigEndian.Uint16(b[:2]) == 65535 {
-		return Address{}, errors.New("Invalid address type received")
+		return nil, errors.New("Invalid address type received")
 	}
 	switch binary.BigEndian.Uint16(b[:2]) {
 	case 0x01:
 		if len(b[2:]) != 4 {
-			return Address{}, errors.New("Invalid length for IPv4")
+			return nil, errors.New("Invalid length for IPv4")
 		}
 	case 0x02:
 		if len(b[2:]) != 16 {
-			return Address{}, errors.New("Invalid length for IPv6")
+			return nil, errors.New("Invalid length for IPv6")
 		}
 	default:
-		return Address(d), nil
+		return Address(b), nil
 	}
-	return Address(d[2:]), nil
+	return Address(b[2:]), nil
 }
 
 // Serialize implements the Type interface.
@@ -94,8 +92,5 @@ func (addr Address) String() string {
 	if ip6 := net.IP(addr).To16(); ip6 != nil {
 		return fmt.Sprintf("Address{%s},Padding:%d", net.IP(addr), addr.Padding())
 	}
-	if len(addr) == 0 {
-		return "Address{},Padding:0" // NOTE: To avoid panicking on addr[2:]
-	}
-	return fmt.Sprintf("Address{%#v},Type{%#v},Padding:%d", addr[2:], addr[:2], addr.Padding())
+	return fmt.Sprintf("Address{%#v}, Type{%#v} Padding:%d", addr[2:], addr[:2], addr.Padding())
 }

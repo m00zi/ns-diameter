@@ -95,20 +95,20 @@ retry:
 	case string:
 		avp, ok = p.avpname[nameIdx{appid, codeVal, vendorID}]
 		if !ok && appid == 0 {
-			err = fmt.Errorf("Could not find AVP %T(%q) for Vendor: %d", codeVal, codeVal, vendorID)
+			err = fmt.Errorf("[name-idx] could not find AVP %T(%q) for Vendor: %d", codeVal, codeVal, vendorID)
 		}
 	case uint32:
 		avp, ok = p.avpcode[codeIdx{appid, codeVal, vendorID}]
 		if !ok && appid == 0 {
-			err = fmt.Errorf("Could not find AVP %T(%d) for Vendor: %d", codeVal, codeVal, vendorID)
+			err = fmt.Errorf("[code-idx-uint32] could not find AVP %T(%d) for Vendor: %d", codeVal, codeVal, vendorID)
 		}
 	case int:
 		avp, ok = p.avpcode[codeIdx{appid, uint32(codeVal), vendorID}]
 		if !ok && appid == 0 {
-			err = fmt.Errorf("Could not find AVP %T(%d) for Vendor: %d", codeVal, codeVal, vendorID)
+			err = fmt.Errorf("[code-idx-int] could not find AVP %T(%d) for Vendor: %d", codeVal, codeVal, vendorID)
 		}
 	default:
-		return nil, fmt.Errorf("Unsupported AVP code type %T(%#v)", codeVal, code)
+		return nil, fmt.Errorf("unsupported AVP code type %T(%#v)", codeVal, code)
 	}
 	if ok {
 		return avp, nil
@@ -124,12 +124,7 @@ retry:
 		goto retry
 	} else {
 		if codeU32, isUint32 := code.(uint32); isUint32 {
-			avp, err = p.FindAVP(origAppID, codeU32)
-			if err != nil {
-				return MakeUnknownAVP(origAppID, codeU32, vendorID), err
-			}
-
-			return avp, nil
+			return MakeUnknownAVP(origAppID, codeU32, vendorID), err
 		}
 	}
 
@@ -164,21 +159,21 @@ func (p *Parser) ScanAVP(code interface{}) (*AVP, error) {
 				return avp, nil
 			}
 		}
-		return nil, fmt.Errorf("Could not find AVP %s", code.(string))
+		return nil, fmt.Errorf("[scanAVP-string] could not find AVP %s", code.(string))
 	case uint32:
 		for idx, avp := range p.avpcode {
 			if idx.code == code.(uint32) {
 				return avp, nil
 			}
 		}
-		return nil, fmt.Errorf("Could not find AVP code %d", code.(uint32))
+		return nil, fmt.Errorf("[scanAVP-uint32] could not find AVP code %d", code.(uint32))
 	case int:
 		for idx, avp := range p.avpcode {
 			if idx.code == uint32(code.(int)) {
 				return avp, nil
 			}
 		}
-		return nil, fmt.Errorf("Could not find AVP code %d", code.(int))
+		return nil, fmt.Errorf("[scanAVP-int] could not find AVP code %d", code.(int))
 	}
 	return nil, fmt.Errorf("Unsupported AVP code type %#v", code)
 }
