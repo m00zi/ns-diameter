@@ -27,7 +27,6 @@ const (
 	ServerAssignment          = 301
 	SessionTermination        = 275
 	SpendingLimit             = 8388635
-	Unknown1                  = 8388609
 	UpdateLocation            = 316
 )
 
@@ -73,6 +72,4 @@ const (
 	STR = "STR"
 	ULA = "ULA"
 	ULR = "ULR"
-	U1A = "U1A"
-	U1R = "U1R"
 )
